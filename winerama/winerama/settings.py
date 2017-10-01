@@ -40,7 +40,16 @@ INSTALLED_APPS = (
     'bootstrap3',
     'reviews',
     'registration',
+    'rest_framework',
+    'tutorial'
 )
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAdminUser',
+    ],
+    'PAGE_SIZE': 10
+}
 
 ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window
 REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
