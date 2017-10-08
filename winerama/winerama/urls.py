@@ -22,6 +22,7 @@ router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
 router.register(r'predict', views.PredictViewSet, 'predict')
+router.register(r'recommend', views.RecommendViewSet, 'recommend')
 
 urlpatterns = [
     url(r'^api/', include(router.urls)),

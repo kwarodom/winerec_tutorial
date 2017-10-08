@@ -37,14 +37,44 @@ class PredictViewSet(viewsets.ViewSet):
         return Response({'result': result})
 
 
-@csrf_exempt
-def clf_predict(request):
-    body = json.loads(request.body.decode("utf-8"))
+class RecommendViewSet(viewsets.ViewSet):
+    def create(self, request):
+        target_movie_name = request.data['movie_name']
 
-    data = body['features']
-    clf = joblib.load('./tutorial/model.pkl') 
+        corr_mat = joblib.load('./tutorial/rec_model.pkl') 
+        movie_names = joblib.load('./tutorial/movie_names.pkl')
+        pop_movies = joblib.load('./tutorial/pop_movies.pkl')
 
-    result = clf.predict(data)
-    result = pd.Series(result).to_json(orient='values')
+        movies_list = list(movie_names)
 
-    return JsonResponse({'result': result})
+        try:
+            target_movie_index = movies_list.index(target_movie_name)
+        except ValueError:
+            top_movies = pop_movies.sort_values(by='rating', ascending=False)
+
+            return Response({
+                'message': "'{}' is not in the list".format(target_movie_name),
+                'result':  top_movies['movie title'].head(5)
+            })
+
+        corr_target = corr_mat[target_movie_index]
+
+        criteria = (corr_target < 1.0) & (corr_target > 0.9)
+        recommended = list(movie_names[criteria])
+
+        # result = clf.predict(data)
+        # return Response({'result': result})
+        return Response({'result': recommended})
+
+
+# @csrf_exempt
+# def clf_predict(request):
+#     body = json.loads(request.body.decode("utf-8"))
+
+#     data = body['features']
+#     clf = joblib.load('./tutorial/model.pkl') 
+
+#     result = clf.predict(data)
+#     result = pd.Series(result).to_json(orient='values')
+
+#     return JsonResponse({'result': result})

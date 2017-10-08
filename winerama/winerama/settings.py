@@ -25,7 +25,7 @@ SECRET_KEY = ')g@^(l6+_uc*ckf%rj2i+89v^4^r3k!$l76husfgc74nk1#&g+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '10.201.16.38']
 
 
 # Application definition
@@ -46,7 +46,8 @@ INSTALLED_APPS = (
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAdminUser',
+        'rest_framework.permissions.AllowAny'
+        # 'rest_framework.permissions.IsAdminUser',
     ],
     'PAGE_SIZE': 10
 }
