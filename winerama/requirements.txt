@@ -13,7 +13,7 @@ numpy==1.11.2
 pathspec==0.3.4
 python-dateutil==2.5.3
 PyYAML==3.12
-requests==2.9.1
+requests==2.20.0
 scipy==0.18.1
 scikit-learn==0.18
 semantic-version==2.5.0
