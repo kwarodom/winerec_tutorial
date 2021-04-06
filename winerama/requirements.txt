@@ -3,7 +3,7 @@ cement==2.8.2
 colorama==0.3.7
 Django==1.9.2
 django-bootstrap3==7.1.0
-django-registration==2.1.2
+django-registration==3.1.2
 docker-py==1.7.2
 dockerpty==0.4.1
 docopt==0.6.2
