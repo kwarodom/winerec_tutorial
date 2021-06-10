@@ -1,7 +1,7 @@
 blessed==1.9.5
 cement==2.8.2
 colorama==0.3.7
-Django==1.9.2
+Django==2.2.24
 django-bootstrap3==7.1.0
 django-registration==2.1.2
 docker-py==1.7.2
